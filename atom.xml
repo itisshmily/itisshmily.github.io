@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[x_shmily]]></title>
+  <subtitle><![CDATA[不忘初心，方得始终。]]></subtitle>
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://datarting.com/"/>
+  <updated>2016-01-17T19:08:09.946Z</updated>
+  <id>http://datarting.com/</id>
+  
+  <author>
+    <name><![CDATA[x_shmily]]></name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <link href="http://datarting.com/2016/01/15/hello-world/"/>
+    <id>http://datarting.com/2016/01/15/hello-world/</id>
+    <published>2016-01-15T12:55:29.000Z</published>
+    <updated>2016-01-17T19:08:09.946Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.<br><a id="more"></a></p>
+<h2 id="Quick_Start"><a href="#Quick_Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate_static_files"><a href="#Generate_static_files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy_to_remote_sites"><a href="#Deploy_to_remote_sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Welcome to <a href="http://hexo.io/">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.<br>]]>
+    
+    </summary>
+    
+      <category term="R" scheme="http://datarting.com/tags/R/"/>
+    
+      <category term="数据分析" scheme="http://datarting.com/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
+    
+      <category term="数据分析" scheme="http://datarting.com/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[my new post]]></title>
+    <link href="http://datarting.com/2016/01/15/my-new-post/"/>
+    <id>http://datarting.com/2016/01/15/my-new-post/</id>
+    <published>2016-01-15T12:52:29.000Z</published>
+    <updated>2016-01-17T18:58:53.460Z</updated>
+    <content type="html"><![CDATA[<p>hhh<br>hhhh<br>hhhh<br>hhhh<br><a id="more"></a><br>hhhh<br>hhhh<br>hhhh<br>hhhh</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>hhh<br>hhhh<br>hhhh<br>hhhh<br>]]>
+    
+    </summary>
+    
+      <category term="R" scheme="http://datarting.com/tags/R/"/>
+    
+      <category term="机器学习" scheme="http://datarting.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="机器学习" scheme="http://datarting.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[test]]></title>
+    <link href="http://datarting.com/2016/01/15/test/"/>
+    <id>http://datarting.com/2016/01/15/test/</id>
+    <published>2016-01-15T12:45:29.000Z</published>
+    <updated>2016-01-17T19:02:53.105Z</updated>
+    <content type="html"><![CDATA[<p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" target="_blank" rel="external">http://rmarkdown.rstudio.com</a>.</p>
+<p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</p>
+<a id="more"></a>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">summary(cars)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##      speed           dist       </span></span><br><span class="line"><span class="preprocessor">##  Min.   : <span class="number">4.0</span>   Min.   :  <span class="number">2.00</span>  </span></span><br><span class="line"><span class="preprocessor">##  <span class="number">1</span>st Qu.:<span class="number">12.0</span>   <span class="number">1</span>st Qu.: <span class="number">26.00</span>  </span></span><br><span class="line"><span class="preprocessor">##  Median :<span class="number">15.0</span>   Median : <span class="number">36.00</span>  </span></span><br><span class="line"><span class="preprocessor">##  Mean   :<span class="number">15.4</span>   Mean   : <span class="number">42.98</span>  </span></span><br><span class="line"><span class="preprocessor">##  <span class="number">3</span>rd Qu.:<span class="number">19.0</span>   <span class="number">3</span>rd Qu.: <span class="number">56.00</span>  </span></span><br><span class="line"><span class="preprocessor">##  Max.   :<span class="number">25.0</span>   Max.   :<span class="number">120.00</span></span></span><br></pre></td></tr></table></figure>
+<p>You can also embed plots, for example:</p>
+<p><img src="/aa_files/figure-html/unnamed-chunk-2-1.png" alt="">\</p>
+<p>Note that the <code>echo = FALSE</code> parameter was added to the code chunk to prevent printing of the R code that generated the plot.</p>
+<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈<br><img src="http://img4.3lian.com/sucai/img6/230/29.jpg" alt="alt text"></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com">http://rmarkdown.rstudio.com</a>.</p>
+<p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</p>]]>
+    
+    </summary>
+    
+      <category term="R" scheme="http://datarting.com/tags/R/"/>
+    
+      <category term="数据挖掘" scheme="http://datarting.com/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
+    
+      <category term="数据挖掘" scheme="http://datarting.com/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
+    
+  </entry>
+  
+</feed>
