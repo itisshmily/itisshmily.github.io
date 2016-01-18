@@ -137,7 +137,7 @@ body,
   height: 100%;
 }
 body {
-  font-family: "Lucida Grande", Verdana, "Helvetica Neue", Arial, sans-serif, "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
+  font-family: "Microsoft YaHei", "微软雅黑", Arial, Helvetica, "Hiragino Sans GB", "宋体", Tahoma, STHeiti, "Lucida Grande", Verdana, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
   background: #fff;
   color: rgba(0,0,0,0.6);
@@ -152,7 +152,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: Times, Georgia, serif, "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
+  font-family: Times, Georgia, serif, "Microsoft YaHei", "微软雅黑", Arial, Helvetica, "Hiragino Sans GB", "宋体", Tahoma, STHeiti;
 }
 h1,
 h2,
@@ -161,7 +161,7 @@ h3 {
 }
 h1 {
   font-size: 1.5em;
-  font-family: "Segoe UI", "Lucida Grande", Verdana, "Helvetica Neue", Arial, sans-serif, "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
+  font-family: "Microsoft YaHei", "微软雅黑", Arial, Helvetica, "Hiragino Sans GB", "宋体", Tahoma, STHeiti, "Segoe UI", "Lucida Grande", Verdana, "Helvetica Neue", Arial, sans-serif;
 }
 h2 {
   font-size: 1.3em;
@@ -1981,7 +1981,7 @@ li:hover {
 }
 .article-entry pre,
 .article-entry code {
-  font-family: Menlo, Consolas, "Source Code Pro", Inconsolata, Monaco, monospace, "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
+  font-family: Menlo, Consolas, "Source Code Pro", Inconsolata, Monaco, monospace, "Microsoft YaHei", "微软雅黑", Arial, Helvetica, "Hiragino Sans GB", "宋体", Tahoma, STHeiti;
   font-size: 1em;
 }
 .article-entry pre code {
@@ -2145,7 +2145,7 @@ pre .javascript .function {
 }
 #footer {
   font-size: 0.8em;
-  font-family: "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
+  font-family: "Microsoft YaHei", "微软雅黑", Arial, Helvetica, "Hiragino Sans GB", "宋体", Tahoma, STHeiti;
   text-shadow: 0 1px #fff;
   position: absolute;
   bottom: 20px;
