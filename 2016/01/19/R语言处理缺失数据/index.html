@@ -1,26 +1,267 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-  <title><![CDATA[x_shmily]]></title>
-  <subtitle><![CDATA[不忘初心，方得始终。]]></subtitle>
-  <link href="/atom.xml" rel="self"/>
-  <link href="http://datarting.com/"/>
-  <updated>2016-01-19T18:57:01.559Z</updated>
-  <id>http://datarting.com/</id>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
   
-  <author>
-    <name><![CDATA[x_shmily]]></name>
+  <title>R语言处理缺失数据 | x_shmily</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在收集的真实数据中，数据缺失是非常常见的现象，而且会对之后的数据分析产生较大影响，因而缺失值的处理是数据预处理的重要内容之一。基本上，缺失数据处理的流程是，首先判断其模式是否随机，然后找出缺失的原因，最后对缺失值进行处理。
+这里主要用到VIM和mice包。并利用VIM包里的sleep数据集。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="R语言处理缺失数据">
+<meta property="og:url" content="http://datarting.com/2016/01/19/R语言处理缺失数据/index.html">
+<meta property="og:site_name" content="x_shmily">
+<meta property="og:description" content="在收集的真实数据中，数据缺失是非常常见的现象，而且会对之后的数据分析产生较大影响，因而缺失值的处理是数据预处理的重要内容之一。基本上，缺失数据处理的流程是，首先判断其模式是否随机，然后找出缺失的原因，最后对缺失值进行处理。
+这里主要用到VIM和mice包。并利用VIM包里的sleep数据集。">
+<meta property="og:image" content="http://7xqa0i.com1.z0.glb.clouddn.com/R%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%BC%BA%E5%A4%B1%E6%95%B0%E6%8D%AE-1.png">
+<meta property="og:image" content="http://7xqa0i.com1.z0.glb.clouddn.com/R%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%BC%BA%E5%A4%B1%E6%95%B0%E6%8D%AE-2.png">
+<meta property="og:image" content="http://7xqa0i.com1.z0.glb.clouddn.com/R%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%BC%BA%E5%A4%B1%E6%95%B0%E6%8D%AE-3.png">
+<meta property="og:updated_time" content="2016-01-19T18:57:01.559Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="R语言处理缺失数据">
+<meta name="twitter:description" content="在收集的真实数据中，数据缺失是非常常见的现象，而且会对之后的数据分析产生较大影响，因而缺失值的处理是数据预处理的重要内容之一。基本上，缺失数据处理的流程是，首先判断其模式是否随机，然后找出缺失的原因，最后对缺失值进行处理。
+这里主要用到VIM和mice包。并利用VIM包里的sleep数据集。">
+  
+    <link rel="alternative" href="/atom.xml" title="x_shmily" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/avatar.png" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/">x_shmily</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">不忘初心，方得始终。</p>
+        
+        
+        <form><input type="text" class="search" placeholder=" Search..."></form>
+                
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <li id="Email"><a class="Email" target="_blank" href="mailto:itisshmily@gmail.com" title="Email"></a></li>
+                            
+                                <li id="知乎"><a class="知乎" target="_blank" href="https://www.zhihu.com/people/xshmily" title="知乎"></a></li>
+                            
+                                <li id="新浪微博"><a class="新浪微博" target="_blank" href="http://weibo.com/u/2615369113" title="新浪微博"></a></li>
+                            
+                                <li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/itisshmily" title="GitHub"></a></li>
+                            
+                                <li id="RSS"><a class="RSS" target="_blank" href="/atom.xml" title="RSS"></a></li>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/R/" style="font-size: 20px;">R</a> <a href="/tags/数据分析/" style="font-size: 15px;">数据分析</a> <a href="/tags/数据挖掘/" style="font-size: 10px;">数据挖掘</a> <a href="/tags/缺失值/" style="font-size: 10px;">缺失值</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://ripeconan.com/">Ripeconan</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">x_shmily</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img lazy-src="/img/avatar.png" class="js-avatar">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">x_shmily</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">不忘初心，方得始终。</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <li id="Email"><a class="Email" target="_blank" href="mailto:itisshmily@gmail.com" title="Email"></a></li>
+                            
+                                <li id="知乎"><a class="知乎" target="_blank" href="https://www.zhihu.com/people/xshmily" title="知乎"></a></li>
+                            
+                                <li id="新浪微博"><a class="新浪微博" target="_blank" href="http://weibo.com/u/2615369113" title="新浪微博"></a></li>
+                            
+                                <li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/itisshmily" title="GitHub"></a></li>
+                            
+                                <li id="RSS"><a class="RSS" target="_blank" href="/atom.xml" title="RSS"></a></li>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-R语言处理缺失数据" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/19/R语言处理缺失数据/" class="article-date">
+      <time datetime="2016-01-19T12:55:29.000Z" itemprop="datePublished">2016-01-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
     
-  </author>
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
   
-  <generator uri="http://hexo.io/">Hexo</generator>
+    <h1 class="article-title" itemprop="name">
+      R语言处理缺失数据
+    </h1>
   
-  <entry>
-    <title><![CDATA[R语言处理缺失数据]]></title>
-    <link href="http://datarting.com/2016/01/19/R%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%BC%BA%E5%A4%B1%E6%95%B0%E6%8D%AE/"/>
-    <id>http://datarting.com/2016/01/19/R语言处理缺失数据/</id>
-    <published>2016-01-19T12:55:29.000Z</published>
-    <updated>2016-01-19T18:57:01.559Z</updated>
-    <content type="html"><![CDATA[<p>在收集的真实数据中，数据缺失是非常常见的现象，而且会对之后的数据分析产生较大影响，因而缺失值的处理是数据预处理的重要内容之一。基本上，缺失数据处理的流程是，首先判断其模式是否随机，然后找出缺失的原因，最后对缺失值进行处理。</p>
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/数据分析/">数据分析</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/R/">R</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据分析/">数据分析</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/缺失值/">缺失值</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>在收集的真实数据中，数据缺失是非常常见的现象，而且会对之后的数据分析产生较大影响，因而缺失值的处理是数据预处理的重要内容之一。基本上，缺失数据处理的流程是，首先判断其模式是否随机，然后找出缺失的原因，最后对缺失值进行处理。</p>
 <p>这里主要用到VIM和mice包。并利用VIM包里的sleep数据集。<br><a id="more"></a><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">install.<span class="function"><span class="title">packages</span><span class="params">(c(<span class="string">"VIM"</span>,<span class="string">"mice"</span>)</span></span>)</span><br></pre></td></tr></table></figure></p>
 <h1 id="u5224_u65AD_u7F3A_u5931_u6570_u636E"><a href="#u5224_u65AD_u7F3A_u5931_u6570_u636E" class="headerlink" title="判断缺失数据"></a>判断缺失数据</h1><h2 id="u8BC6_u522B_u7F3A_u5931_u503C"><a href="#u8BC6_u522B_u7F3A_u5931_u503C" class="headerlink" title="识别缺失值"></a>识别缺失值</h2><p>R中缺失值以NA表示，判断数据是否存在缺失值的函数有两个<code>is.na()</code>和<code>complete.cases()</code>。</p>
 <p><code>is.na()</code>可以应用于向量、数据框等多种对象，返回逻辑值，若数据为缺失值则返回TRUE，否则为FALSE。</p>
@@ -176,80 +417,223 @@
 </tr>
 </tbody>
 </table>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>在收集的真实数据中，数据缺失是非常常见的现象，而且会对之后的数据分析产生较大影响，因而缺失值的处理是数据预处理的重要内容之一。基本上，缺失数据处理的流程是，首先判断其模式是否随机，然后找出缺失的原因，最后对缺失值进行处理。</p>
-<p>这里主要用到VIM和mice包。并利用VIM包里的sleep数据集。<br>]]>
+
+      
+    </div>
     
-    </summary>
-    
-      <category term="R" scheme="http://datarting.com/tags/R/"/>
-    
-      <category term="数据分析" scheme="http://datarting.com/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
-    
-      <category term="缺失值" scheme="http://datarting.com/tags/%E7%BC%BA%E5%A4%B1%E5%80%BC/"/>
-    
-      <category term="数据分析" scheme="http://datarting.com/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
-    
-  </entry>
+  </div>
   
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <link href="http://datarting.com/2016/01/15/hello-world/"/>
-    <id>http://datarting.com/2016/01/15/hello-world/</id>
-    <published>2016-01-15T12:55:29.000Z</published>
-    <updated>2016-01-17T19:08:09.946Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.<br><a id="more"></a></p>
-<h2 id="Quick_Start"><a href="#Quick_Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files"><a href="#Generate_static_files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites"><a href="#Deploy_to_remote_sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>Welcome to <a href="http://hexo.io/">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.<br>]]>
     
-    </summary>
-    
-      <category term="R" scheme="http://datarting.com/tags/R/"/>
-    
-      <category term="数据分析" scheme="http://datarting.com/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
-    
-      <category term="数据分析" scheme="http://datarting.com/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
-    
-  </entry>
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/01/15/hello-world/">
+                    Hello World
+                </a>
+            </div>
+        
+    </nav>
+
   
-  <entry>
-    <title><![CDATA[test]]></title>
-    <link href="http://datarting.com/2016/01/15/test/"/>
-    <id>http://datarting.com/2016/01/15/test/</id>
-    <published>2016-01-15T12:45:29.000Z</published>
-    <updated>2016-01-17T19:02:53.105Z</updated>
-    <content type="html"><![CDATA[<p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" target="_blank" rel="external">http://rmarkdown.rstudio.com</a>.</p>
-<p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</p>
-<a id="more"></a>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">summary(cars)</span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##      speed           dist       </span></span><br><span class="line"><span class="preprocessor">##  Min.   : <span class="number">4.0</span>   Min.   :  <span class="number">2.00</span>  </span></span><br><span class="line"><span class="preprocessor">##  <span class="number">1</span>st Qu.:<span class="number">12.0</span>   <span class="number">1</span>st Qu.: <span class="number">26.00</span>  </span></span><br><span class="line"><span class="preprocessor">##  Median :<span class="number">15.0</span>   Median : <span class="number">36.00</span>  </span></span><br><span class="line"><span class="preprocessor">##  Mean   :<span class="number">15.4</span>   Mean   : <span class="number">42.98</span>  </span></span><br><span class="line"><span class="preprocessor">##  <span class="number">3</span>rd Qu.:<span class="number">19.0</span>   <span class="number">3</span>rd Qu.: <span class="number">56.00</span>  </span></span><br><span class="line"><span class="preprocessor">##  Max.   :<span class="number">25.0</span>   Max.   :<span class="number">120.00</span></span></span><br></pre></td></tr></table></figure>
-<p>You can also embed plots, for example:</p>
-<p><img src="/aa_files/figure-html/unnamed-chunk-2-1.png" alt="">\</p>
-<p>Note that the <code>echo = FALSE</code> parameter was added to the code chunk to prevent printing of the R code that generated the plot.</p>
-<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈<br><img src="http://img4.3lian.com/sucai/img6/230/29.jpg" alt="alt text"></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com">http://rmarkdown.rstudio.com</a>.</p>
-<p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</p>]]>
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u5224_u65AD_u7F3A_u5931_u6570_u636E"><span class="toc-number">1.</span> <span class="toc-text">判断缺失数据</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u8BC6_u522B_u7F3A_u5931_u503C"><span class="toc-number">1.1.</span> <span class="toc-text">识别缺失值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E0D_u540C_u7C7B_u578B_u6570_u636E_u8FD4_u56DE_u503C_u793A_u4F8B"><span class="toc-number">1.2.</span> <span class="toc-text">不同类型数据返回值示例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u5224_u65AD_u7F3A_u5931_u6A21_u5F0F"><span class="toc-number">2.</span> <span class="toc-text">判断缺失模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u4ECE_u6570_u503C_u89D2_u5EA6"><span class="toc-number">2.1.</span> <span class="toc-text">从数值角度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u56FE_u5F62_u65B9_u5F0F"><span class="toc-number">2.2.</span> <span class="toc-text">图形方式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u5904_u7406_u7F3A_u5931_u6570_u636E"><span class="toc-number">3.</span> <span class="toc-text">处理缺失数据</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u5220_u9664_u7F3A_u5931_u6837_u672C"><span class="toc-number">3.1.</span> <span class="toc-text">删除缺失样本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u66FF_u6362_u7F3A_u5931_u503C"><span class="toc-number">3.2.</span> <span class="toc-text">替换缺失值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u591A_u91CD_u63D2_u8865_u6CD5"><span class="toc-number">3.3.</span> <span class="toc-text">多重插补法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5904_u7406_u7F3A_u5931_u503C_u7684_u5176_u4ED6_u65B9_u6CD5"><span class="toc-number">3.4.</span> <span class="toc-text">处理缺失值的其他方法</span></a></li></ol></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+<div class="share">
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+    <a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+    <a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+    </div>
+    <script>
+        window._bd_share_config={
+            "common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+</div>
+
+
+
     
-    </summary>
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2016/01/19/R语言处理缺失数据/" data-title="R语言处理缺失数据" data-url="http://datarting.com/2016/01/19/R语言处理缺失数据/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"itisshmily"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
     
-      <category term="R" scheme="http://datarting.com/tags/R/"/>
-    
-      <category term="数据挖掘" scheme="http://datarting.com/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
-    
-      <category term="数据挖掘" scheme="http://datarting.com/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
-    
-  </entry>
-  
-</feed>
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/01/15/hello-world/" title="下一篇: Hello World">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/01/19/R语言处理缺失数据/">R语言处理缺失数据</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/15/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/15/test/">test</a></li></ul>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2016 x_shmily
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的静态博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减双栏 Hexo 博客主题">Yelee</a> by MOxFIVE
+            </div>
+        </div>
+        <div class="visit">
+            <span id="busuanzi_container_site_pv" style='display:none'>
+                <span id="site-visit" >本站到访数: 
+                    <span id="busuanzi_value_site_uv"></span>
+                </span>
+            </span>
+            <span id="busuanzi_container_page_pv" style='display:none'>
+                <span id="page-visit">, 本页阅读量: 
+                    <span id="busuanzi_value_page_pv"></span>
+                </span>
+            </span>
+        </div>
+    </div>
+</footer>
+    </div>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
