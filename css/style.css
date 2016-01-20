@@ -1981,7 +1981,7 @@ li:hover {
 }
 .article-entry pre,
 .article-entry code {
-  font-family: "Microsoft YaHei", "微软雅黑", Arial, Helvetica, "Hiragino Sans GB", "宋体", Tahoma, STHeiti, Menlo, Consolas, "Source Code Pro", Inconsolata, Monaco, monospace;
+  font-family: Menlo, Consolas, "Source Code Pro", Inconsolata, Monaco, monospace, "Microsoft YaHei", "微软雅黑", Arial, Helvetica, "Hiragino Sans GB", "宋体", Tahoma, STHeiti;
   font-size: 1em;
 }
 .article-entry pre code {
