@@ -4,7 +4,7 @@
   <subtitle><![CDATA[不忘初心，方得始终。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://datarting.com/"/>
-  <updated>2016-01-20T07:04:17.070Z</updated>
+  <updated>2016-01-20T07:08:21.798Z</updated>
   <id>http://datarting.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://datarting.com/2016/01/19/R%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%BC%BA%E5%A4%B1%E6%95%B0%E6%8D%AE/"/>
     <id>http://datarting.com/2016/01/19/R语言处理缺失数据/</id>
     <published>2016-01-19T12:55:29.000Z</published>
-    <updated>2016-01-20T07:04:17.070Z</updated>
+    <updated>2016-01-20T07:08:21.798Z</updated>
     <content type="html"><![CDATA[<p>在收集的真实数据中，数据缺失是非常常见的现象，而且会对之后的数据分析产生较大影响，因而缺失值的处理是数据预处理的重要内容之一。基本上，缺失数据处理的流程是，首先判断其模式是否随机，然后找出缺失的原因，最后对缺失值进行处理。</p>
 <p>这里主要用到VIM和mice包。并利用VIM包里的sleep数据集。<br><a id="more"></a><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">install.<span class="function"><span class="title">packages</span><span class="params">(c(<span class="string">"VIM"</span>,<span class="string">"mice"</span>)</span></span>)</span><br></pre></td></tr></table></figure></p>
 <h1 id="u5224_u65AD_u7F3A_u5931_u6570_u636E"><a href="#u5224_u65AD_u7F3A_u5931_u6570_u636E" class="headerlink" title="判断缺失数据"></a>判断缺失数据</h1><h2 id="u8BC6_u522B_u7F3A_u5931_u503C"><a href="#u8BC6_u522B_u7F3A_u5931_u503C" class="headerlink" title="识别缺失值"></a>识别缺失值</h2><p>R中缺失值以NA表示，判断数据是否存在缺失值的函数有两个is.na()和complete.cases()。</p>
@@ -175,6 +175,8 @@
       <category term="R" scheme="http://datarting.com/tags/R/"/>
     
       <category term="数据分析" scheme="http://datarting.com/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
+    
+      <category term="数据预处理" scheme="http://datarting.com/tags/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/"/>
     
       <category term="缺失值" scheme="http://datarting.com/tags/%E7%BC%BA%E5%A4%B1%E5%80%BC/"/>
     
