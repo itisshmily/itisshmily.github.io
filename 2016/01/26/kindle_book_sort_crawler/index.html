@@ -6,26 +6,20 @@
   <title>抓取Kindle电子书销售排行榜 | x_shmily</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="本程序通过R包XML抓取Kindle电子书销售排行榜，分为付费和免费两类。
-准备工作12install.packages(XML)library(XML)
-获取网址首先获取所需爬取的网址
-12page &amp;lt;- 1:5     #总页数urllist &amp;lt;- paste(&quot;http://www.amazon.cn/gp/bestsellers/digital-text/116169071/r">
+准备工作12install.packages(XML)library(XML)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="抓取Kindle电子书销售排行榜">
 <meta property="og:url" content="http://datarting.com/2016/01/26/kindle_book_sort_crawler/index.html">
 <meta property="og:site_name" content="x_shmily">
 <meta property="og:description" content="本程序通过R包XML抓取Kindle电子书销售排行榜，分为付费和免费两类。
-准备工作12install.packages(XML)library(XML)
-获取网址首先获取所需爬取的网址
-12page &amp;lt;- 1:5     #总页数urllist &amp;lt;- paste(&quot;http://www.amazon.cn/gp/bestsellers/digital-text/116169071/r">
+准备工作12install.packages(XML)library(XML)">
 <meta property="og:image" content="http://7xqa0i.com1.z0.glb.clouddn.com/kindle_pay_sort.png">
 <meta property="og:image" content="http://7xqa0i.com1.z0.glb.clouddn.com/kindle_free_sort.png">
-<meta property="og:updated_time" content="2016-01-26T20:24:25.920Z">
+<meta property="og:updated_time" content="2016-01-26T20:29:04.826Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="抓取Kindle电子书销售排行榜">
 <meta name="twitter:description" content="本程序通过R包XML抓取Kindle电子书销售排行榜，分为付费和免费两类。
-准备工作12install.packages(XML)library(XML)
-获取网址首先获取所需爬取的网址
-12page &amp;lt;- 1:5     #总页数urllist &amp;lt;- paste(&quot;http://www.amazon.cn/gp/bestsellers/digital-text/116169071/r">
+准备工作12install.packages(XML)library(XML)">
   
     <link rel="alternative" href="/atom.xml" title="x_shmily" type="application/atom+xml">
   
@@ -268,6 +262,7 @@
           
         <p>本程序通过R包XML抓取Kindle电子书销售排行榜，分为付费和免费两类。</p>
 <h1 id="u51C6_u5907_u5DE5_u4F5C"><a href="#u51C6_u5907_u5DE5_u4F5C" class="headerlink" title="准备工作"></a>准备工作</h1><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">install.packages(XML)</span><br><span class="line"><span class="keyword">library</span>(XML)</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h1 id="u83B7_u53D6_u7F51_u5740"><a href="#u83B7_u53D6_u7F51_u5740" class="headerlink" title="获取网址"></a>获取网址</h1><p>首先获取所需爬取的网址</p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">page &lt;- <span class="number">1</span>:<span class="number">5</span>     <span class="comment">#总页数</span></span><br><span class="line">urllist &lt;- paste(<span class="string">"http://www.amazon.cn/gp/bestsellers/digital-text/116169071/ref=zg_bs_116169071_pg_"</span>, page, <span class="string">"?ie=UTF8&amp;pg="</span>, page, sep=<span class="string">""</span>)     <span class="comment">#构建每一页网址</span></span><br></pre></td></tr></table></figure>
 <p>然后抓取页面，并将其转换为XML格式</p>
