@@ -4,6 +4,30 @@
 
     
   <url>
+    <loc>http://datarting.com/2016/01/26/kindle_book_sort_crawler/</loc>
+    <lastmod>2016-01-26T20:18:55.329Z</lastmod>
+    <data>
+        <display>
+        <title>抓取Kindle电子书销售排行榜</title>
+        <pubTime>2016-01-26T14:09:05.000Z</pubTime>
+        
+        <tag>R</tag>
+         
+        <tag>数据挖掘</tag>
+         
+        <tag>爬虫</tag>
+         
+         
+           
+             
+              <breadCrumb title="R" url="http://datarting.com/categories/R/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://datarting.com/2016/01/19/missing_value/</loc>
     <lastmod>2016-01-20T07:08:21.798Z</lastmod>
     <data>
