@@ -4,7 +4,7 @@
   <subtitle><![CDATA[不忘初心，方得始终。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://datarting.com/"/>
-  <updated>2016-01-28T18:38:04.707Z</updated>
+  <updated>2016-01-28T18:39:59.001Z</updated>
   <id>http://datarting.com/</id>
   
   <author>
@@ -15,11 +15,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[R语言parallel包处理并行运算]]></title>
+    <title><![CDATA[R语言parallel包处理并行计算]]></title>
     <link href="http://datarting.com/2016/01/28/r_parallel_computing/"/>
     <id>http://datarting.com/2016/01/28/r_parallel_computing/</id>
     <published>2016-01-28T09:09:29.000Z</published>
-    <updated>2016-01-28T18:38:04.707Z</updated>
+    <updated>2016-01-28T18:39:59.001Z</updated>
     <content type="html"><![CDATA[<p>R语言在处理大数据时，运算速度并不快，因为它只能使用单线程运算。但是其中的一些程序包强化了其并行运算能力，包括parallel包等。</p>
 <p>parallel包的思路和并行计算一致，都是将输入数据分割、计算、整合结果，调用不同的cpu进行数据运算，并在多个cpu核心的单机上也能发挥并行计算的功能。<br><a id="more"></a></p>
 <h1 id="u51C6_u5907_u5DE5_u4F5C"><a href="#u51C6_u5907_u5DE5_u4F5C" class="headerlink" title="准备工作"></a>准备工作</h1><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">install.packages(parallel)</span><br><span class="line"><span class="keyword">library</span>(parallel)</span><br></pre></td></tr></table></figure>
