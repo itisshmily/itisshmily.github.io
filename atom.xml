@@ -4,7 +4,7 @@
   <subtitle><![CDATA[不忘初心，方得始终。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://datarting.com/"/>
-  <updated>2016-01-26T20:41:56.083Z</updated>
+  <updated>2016-01-28T18:33:05.580Z</updated>
   <id>http://datarting.com/</id>
   
   <author>
@@ -13,6 +13,51 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[R语言parallel包处理并行运算]]></title>
+    <link href="http://datarting.com/2016/01/28/r_parallel_computing/"/>
+    <id>http://datarting.com/2016/01/28/r_parallel_computing/</id>
+    <published>2016-01-28T09:09:29.000Z</published>
+    <updated>2016-01-28T18:33:05.580Z</updated>
+    <content type="html"><![CDATA[<p>R语言在处理大数据时，运算速度并不快，因为它只能使用单线程运算。但是其中的一些程序包强化了其并行运算能力，包括parallel包等。</p>
+<p>parallel包的思路和并行计算一致，都是将输入数据分割、计算、整合结果，调用不同的cpu进行数据运算，并在多个cpu核心的单机上也能发挥并行计算的功能。<br><a id="more"></a></p>
+<h1 id="u51C6_u5907_u5DE5_u4F5C"><a href="#u51C6_u5907_u5DE5_u4F5C" class="headerlink" title="准备工作"></a>准备工作</h1><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">install.packages(parallel)</span><br><span class="line"><span class="keyword">library</span>(parallel)</span><br></pre></td></tr></table></figure>
+<h1 id="u5E76_u884C_u8BA1_u7B97_u8FC7_u7A0B"><a href="#u5E76_u884C_u8BA1_u7B97_u8FC7_u7A0B" class="headerlink" title="并行计算过程"></a>并行计算过程</h1><p>这样的计算过程可以使用如下方式来表述：</p>
+<ol>
+<li>启动M个附属进程，并初始化。</li>
+<li>针对于任务，为每个附属进程分发所有的数据。</li>
+<li>将任务粗略的分为M个块儿（chunks），并将这些块儿发送到附属进程（包含需要的R代码）。</li>
+<li>等待所有的附属进程完成计算任务，并返回结果。</li>
+<li>对于其他任务也同样重复2-4。</li>
+<li>关闭附属进程。</li>
+</ol>
+<h1 id="u4F7F_u7528lapply"><a href="#u4F7F_u7528lapply" class="headerlink" title="使用lapply"></a>使用lapply</h1><p>自定义一个所要运算的函数，例：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fun &lt;- <span class="keyword">function</span>(x)&#123;</span><br><span class="line">  <span class="keyword">return</span> (x+<span class="number">1</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>直接使用lapply函数(隐式循环)，它实际就是对不同的数据应用了相同的函数。system.time返回计算所需时间。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">system.time(&#123;</span><br><span class="line">  results &lt;- lapply(<span class="number">1</span>:<span class="number">5000000</span>, fun)</span><br><span class="line">  res.df &lt;- do.call(<span class="string">"rbind"</span>,results)     <span class="comment">#合并计算结果</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##    user  system elapsed </span></span><br><span class="line"><span class="preprocessor">##   <span class="number">53.68</span>    <span class="number">0.33</span>   <span class="number">54.64</span></span></span><br></pre></td></tr></table></figure>
+<h1 id="u4F7F_u7528_u5E76_u884C_u8FD0_u7B97"><a href="#u4F7F_u7528_u5E76_u884C_u8FD0_u7B97" class="headerlink" title="使用并行运算"></a>使用并行运算</h1><p>调用多核心进行并行计算。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">system.time(&#123;</span><br><span class="line">  x &lt;- <span class="number">1</span>:<span class="number">5000000</span></span><br><span class="line">  cl &lt;- makeCluster(<span class="number">3</span>)     <span class="comment">#初始化三核心集群</span></span><br><span class="line">  results &lt;- parLapply(cl, x,  fun)     <span class="comment">#进行并行计算</span></span><br><span class="line">  res.df &lt;- do.call(<span class="string">"rbind"</span>,results)     <span class="comment">#合并计算结果</span></span><br><span class="line">  stopCluster(cl)     <span class="comment">#关闭集群</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##    user  system elapsed </span></span><br><span class="line"><span class="preprocessor">##   <span class="number">29.89</span>    <span class="number">0.82</span>   <span class="number">47.83</span></span></span><br></pre></td></tr></table></figure>
+<p>其中parLapply函数中三个参数分别是集群对象、输入参数和运算函数名。detectCores()函数可以确定系统核心数目，对于Window系统下的Intel I5或I7处理器，一般使用detectCores(logical = F)来获得实际的物理核心数量。</p>
+<h1 id="u4E0D_u4F7F_u7528_u5E76_u884C_u8FD0_u7B97"><a href="#u4E0D_u4F7F_u7528_u5E76_u884C_u8FD0_u7B97" class="headerlink" title="不使用并行运算"></a>不使用并行运算</h1><p>下面不使用并行运算，并将循环次数减少25倍，看看消耗时间如何</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">system.time(&#123;</span><br><span class="line">  y&lt;-numeric()</span><br><span class="line">  <span class="keyword">for</span>(x <span class="keyword">in</span> <span class="number">1</span>:<span class="number">200000</span>)&#123;</span><br><span class="line">    y[x]&lt;-fun(x)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##    user  system elapsed </span></span><br><span class="line"><span class="preprocessor">##   <span class="number">54.70</span>    <span class="number">0.09</span>   <span class="number">55.25</span></span></span><br></pre></td></tr></table></figure>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>R语言在处理大数据时，运算速度并不快，因为它只能使用单线程运算。但是其中的一些程序包强化了其并行运算能力，包括parallel包等。</p>
+<p>parallel包的思路和并行计算一致，都是将输入数据分割、计算、整合结果，调用不同的cpu进行数据运算，并在多个cpu核心的单机上也能发挥并行计算的功能。<br>]]>
+    
+    </summary>
+    
+      <category term="R" scheme="http://datarting.com/tags/R/"/>
+    
+      <category term="并行运算" scheme="http://datarting.com/tags/%E5%B9%B6%E8%A1%8C%E8%BF%90%E7%AE%97/"/>
+    
+      <category term="R" scheme="http://datarting.com/categories/R/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[抓取Kindle电子书销售排行榜]]></title>
@@ -229,65 +274,6 @@
       <category term="缺失值" scheme="http://datarting.com/tags/%E7%BC%BA%E5%A4%B1%E5%80%BC/"/>
     
       <category term="数据分析" scheme="http://datarting.com/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <link href="http://datarting.com/2016/01/15/hello-world/"/>
-    <id>http://datarting.com/2016/01/15/hello-world/</id>
-    <published>2016-01-15T12:55:29.000Z</published>
-    <updated>2016-01-17T19:08:09.946Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.<br><a id="more"></a></p>
-<h2 id="Quick_Start"><a href="#Quick_Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files"><a href="#Generate_static_files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites"><a href="#Deploy_to_remote_sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>Welcome to <a href="http://hexo.io/">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.<br>]]>
-    
-    </summary>
-    
-      <category term="R" scheme="http://datarting.com/tags/R/"/>
-    
-      <category term="数据分析" scheme="http://datarting.com/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
-    
-      <category term="数据分析" scheme="http://datarting.com/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[test]]></title>
-    <link href="http://datarting.com/2016/01/15/test/"/>
-    <id>http://datarting.com/2016/01/15/test/</id>
-    <published>2016-01-15T12:45:29.000Z</published>
-    <updated>2016-01-17T19:02:53.105Z</updated>
-    <content type="html"><![CDATA[<p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" target="_blank" rel="external">http://rmarkdown.rstudio.com</a>.</p>
-<p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</p>
-<a id="more"></a>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">summary(cars)</span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##      speed           dist       </span></span><br><span class="line"><span class="preprocessor">##  Min.   : <span class="number">4.0</span>   Min.   :  <span class="number">2.00</span>  </span></span><br><span class="line"><span class="preprocessor">##  <span class="number">1</span>st Qu.:<span class="number">12.0</span>   <span class="number">1</span>st Qu.: <span class="number">26.00</span>  </span></span><br><span class="line"><span class="preprocessor">##  Median :<span class="number">15.0</span>   Median : <span class="number">36.00</span>  </span></span><br><span class="line"><span class="preprocessor">##  Mean   :<span class="number">15.4</span>   Mean   : <span class="number">42.98</span>  </span></span><br><span class="line"><span class="preprocessor">##  <span class="number">3</span>rd Qu.:<span class="number">19.0</span>   <span class="number">3</span>rd Qu.: <span class="number">56.00</span>  </span></span><br><span class="line"><span class="preprocessor">##  Max.   :<span class="number">25.0</span>   Max.   :<span class="number">120.00</span></span></span><br></pre></td></tr></table></figure>
-<p>You can also embed plots, for example:</p>
-<p><img src="/aa_files/figure-html/unnamed-chunk-2-1.png" alt="">\</p>
-<p>Note that the <code>echo = FALSE</code> parameter was added to the code chunk to prevent printing of the R code that generated the plot.</p>
-<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈<br><img src="http://img4.3lian.com/sucai/img6/230/29.jpg" alt="alt text"></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com">http://rmarkdown.rstudio.com</a>.</p>
-<p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</p>]]>
-    
-    </summary>
-    
-      <category term="R" scheme="http://datarting.com/tags/R/"/>
-    
-      <category term="数据挖掘" scheme="http://datarting.com/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
-    
-      <category term="数据挖掘" scheme="http://datarting.com/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
     
   </entry>
   

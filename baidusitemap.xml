@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://datarting.com/2016/01/28/r_parallel_computing/</loc>
+    <lastmod>2016-01-28T18:33:05.580Z</lastmod>
+    <data>
+        <display>
+        <title>R语言parallel包处理并行运算</title>
+        <pubTime>2016-01-28T09:09:29.000Z</pubTime>
+        
+        <tag>R</tag>
+         
+        <tag>并行运算</tag>
+         
+         
+           
+             
+              <breadCrumb title="R" url="http://datarting.com/categories/R/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://datarting.com/2016/01/26/kindle_book_sort_crawler/</loc>
     <lastmod>2016-01-26T20:41:56.083Z</lastmod>
     <data>
@@ -47,50 +69,6 @@
            
              
               <breadCrumb title="数据分析" url="http://datarting.com/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://datarting.com/2016/01/15/hello-world/</loc>
-    <lastmod>2016-01-17T19:08:09.946Z</lastmod>
-    <data>
-        <display>
-        <title>Hello World</title>
-        <pubTime>2016-01-15T12:55:29.000Z</pubTime>
-        
-        <tag>R</tag>
-         
-        <tag>数据分析</tag>
-         
-         
-           
-             
-              <breadCrumb title="数据分析" url="http://datarting.com/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://datarting.com/2016/01/15/test/</loc>
-    <lastmod>2016-01-17T19:02:53.105Z</lastmod>
-    <data>
-        <display>
-        <title>test</title>
-        <pubTime>2016-01-15T12:45:29.000Z</pubTime>
-        
-        <tag>R</tag>
-         
-        <tag>数据挖掘</tag>
-         
-         
-           
-             
-              <breadCrumb title="数据挖掘" url="http://datarting.com/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
           
         </display>
     </data>
